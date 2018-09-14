@@ -11,6 +11,7 @@
 		<ul class="list-group">
 			<li class="list-group-item"><code>&VaribleName</code></li>
 			<li class="list-group-item"><code>DEFINE and UNDEFINE</code></li>
+			<li class="list-group-item"><code>ACCEPT and PROMPT</code></li>
 			<li class="list-group-item"><code>&&VaribleName</code></li>
 		</ul>
 	</div>
@@ -22,14 +23,30 @@
 SELECT column_name = &ColumnVariable
 FROM table_name = &TableVariable
 WHERE column_name = '&Value'</code></pre>
+		<code><h6>ACCEPT and PROMPT</h6></code>
+		<p>Using substitution variable will display a prompt window
+		to indicate values to be entered. <span><code>ACCEPT and PROMP</code></span> allows customizing the prompt window.  </p>
+		<pre><code>
+ACCEPT emp_from PROMPT 'please enter EMPLOYEE from ' ;
+ACCEPT emp_to PROMPT 'please enter EMPLOYEE to ' ;
+SELECT * FROM EMPLOYEES
+WHERE EMPLOYEE_id between &emp_from and &emp_to;</code></pre>
 		<code><h6>DEFINE and UNDEFINE</h6></code>
-		<p>Use <span><code>DEFINE</code></span> to create variable for session.  Use <span><code>UNDEFINE</code></span> to  variable for session.</p>
+		<p>Use <span><code>DEFINE</code></span> to create variable for session.  Use <span><code>UNDEFINE</code></span> to destroy session variable.</p>
 		<pre><code>
 DEFINE Value = 200
 
 SELECT column_name = &ColumnVariable
 FROM table_name = &TableVariable
 WHERE column_name = &Value
+
+UNDEFINE Value</code></pre>
+		<code><h6>&&VariableName</h6></code>
+		<p>Use <span><code>double ampersand</code></span> to create variable for session and assign it at the same time.   Use <span><code>UNDEFINE</code></span>  to destroy session variable.</p>
+		<pre><code>
+SELECT column_name = &ColumnVariable
+FROM table_name = &TableVariable
+WHERE column_name = &&Value
 
 UNDEFINE Value</code></pre>
 	</div>
